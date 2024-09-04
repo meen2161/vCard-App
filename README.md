@@ -9,13 +9,13 @@ using JavaScript
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/meen2161/vCard-App.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd vCard-App
 ```
 
 Install dependencies
