@@ -9,18 +9,25 @@ import QRCode from 'react-native-qrcode-svg';
 const Stack = createStackNavigator();
 
 export default function App() {
-  let name = "Kongrak;Thanawat;"
+  let title = ""; //Title on contact
+  let org = ""; //Organization name
+  let name = "Lastname;Firstname;" //Full name => "Lastname;Firstname;"
+  let tel = ""; //Telephone number
+  let email = ""; //Email address
+  let facebookurl = ""; //Facebook URL
+  let lineurl = ""; //Line URL
+  let anyurl = ""; //Any URL
 
-  let data ="BEGIN:VCARD\n";
+  let data = "BEGIN:VCARD\n";
   data += "VERSION:4.0\n";
-  data += "TITLE:\n";
-  data += "ORG:\n";
+  data += "TITLE:" + title + "\n";
+  data += "ORG:" + org + "\n";
   data += "N:" + name + "\n"
-  data += "TEL;TYPE=CELL:+66 0642649867\n";
-  data += "EMAIL:\n";
-  data += "URL:\n";
-  data += "URL:\n";
-  data += "URL:\n";
+  data += "TEL;TYPE=CELL:+66 " + tel + "\n";
+  data += "EMAIL:" + email + "\n";
+  data += "URL:" + facebookurl + "\n";
+  data += "URL:" + lineurl + "\n";
+  data += "URL:" + anyurl + "\n";
   data += "END:VCARD";
 
   return (
@@ -28,7 +35,7 @@ export default function App() {
       <Text>Open up App.js to start working on your Hello!</Text>
       <StatusBar style="auto" />
       <View>
-        <QRCode value={data}/>
+        <QRCode value={data} />
       </View>
     </View>
   );
