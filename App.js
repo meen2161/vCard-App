@@ -36,6 +36,7 @@ export default function App() {
       <StatusBar style="auto" />
       <View>
         <QRCode value={data} />
+        
       </View>
     </View>
   );
