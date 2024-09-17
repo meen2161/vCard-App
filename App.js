@@ -1,51 +1,56 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { StyleSheet, Text, Button, View, Alert, SafeAreaView, TouchableOpacity } from 'react-native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import QRCode from 'react-native-qrcode-svg';
+import HomeScreen from './components/screen/home-screen';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  let title = ""; //Title on contact
-  let org = ""; //Organization name
-  let name = "Lastname;Firstname;" //Full name => "Lastname;Firstname;"
-  let tel = ""; //Telephone number
-  let email = ""; //Email address
-  let facebookurl = ""; //Facebook URL
-  let lineurl = ""; //Line URL
-  let anyurl = ""; //Any URL
-
-  let data = "BEGIN:VCARD\n";
-  data += "VERSION:4.0\n";
-  data += "TITLE:" + title + "\n";
-  data += "ORG:" + org + "\n";
-  data += "N:" + name + "\n"
-  data += "TEL;TYPE=CELL:+66 " + tel + "\n";
-  data += "EMAIL:" + email + "\n";
-  data += "URL:" + facebookurl + "\n";
-  data += "URL:" + lineurl + "\n";
-  data += "URL:" + anyurl + "\n";
-  data += "END:VCARD";
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your Hello!</Text>
-      <StatusBar style="autodwaawdwa" />
-      <View>
-        <QRCode value={data} />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerTitleStyle: {
+          fontSize: 24,
+          fontWeight: 'bold',
+        },
+      }}>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            title: 'vCard',
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: '#354A5F',
+              shadowColor: '#000',
+              shadowOffset: { width: 1, height: 0.1 },
+              shadowOpacity: 0,
+              shadowRadius: 10,
+              elevation: 5,
+            },
+            headerTitleStyle: {
+              flex: 1,
+              marginTop: 5,
+              textAlign: 'center',
+              color: '#fff',
+              fontWeight: 'bold',
+              textShadowColor: '#000',
+              fontSize: 36,
+              textShadowOffset: { width: 1, height: 1 },  // Set shadow position
+              textShadowRadius: 2,
+            },
+            headerTintColor: '#fff',
+          }}
+
+
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
