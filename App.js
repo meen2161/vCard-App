@@ -33,7 +33,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your Hello!</Text>
-      <StatusBar style="auto" />
+      <StatusBar style="autodwa" />
       <View>
         <QRCode value={data} />
       </View>
