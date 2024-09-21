@@ -7,15 +7,19 @@ import QRCode from 'react-native-qrcode-svg';
 import styles from '../css/home-screen-css';
 import { LinearGradient } from 'expo-linear-gradient';
 
+export default function HomeScreen({ route, navigation }) {
+    const { firstName, lastName, phoneNumber, email, facebookURL } = route.params || {
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        email: '',
+        facebookURL: '',
+    };
 
-const Stack = createStackNavigator();
-
-export default function HomeScreen() {
     let title = ""; //Title on contact
     let org = ""; //Organization name
-    let name = "Lastname;Firstname;" //Full name => "Lastname;Firstname;"
+    let name = lastName + ";" + firstName + ";" //Full name => "Lastname;Firstname;"
     let tel = ""; //Telephone number
-    let email = ""; //Email address
     let facebookurl = ""; //Facebook URL
     let lineurl = ""; //Line URL
     let anyurl = ""; //Any URL
@@ -51,7 +55,13 @@ export default function HomeScreen() {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => Alert.alert('Button pressed')}
+                    onPress={() => navigation.navigate('Edit', {
+                        firstName,
+                        lastName,
+                        phoneNumber,
+                        email,
+                        facebookURL,
+                    })}
                 >
                     <Text style={styles.buttonText}>Edit infomation</Text>
                 </TouchableOpacity>

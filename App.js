@@ -3,54 +3,42 @@ import { StyleSheet, Text, Button, View, Alert, SafeAreaView, TouchableOpacity }
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import QRCode from 'react-native-qrcode-svg';
 import HomeScreen from './components/screen/home-screen';
+import EditScreen from './components/screen/edit-screen';
+import appStyles from './components/css/App-css';
+
 
 const Stack = createStackNavigator();
 
 export default function App() {
-
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerTitleStyle: {
-          fontSize: 24,
-          fontWeight: 'bold',
-        },
-      }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerTitleStyle: appStyles.headerTitleStyle,  // Applying styles from App-css.js
+          headerStyle: appStyles.headerStyle,            // Applying styles from App-css.js
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{
             title: 'vCard',
             headerTitleAlign: 'center',
-            headerStyle: {
-              backgroundColor: '#354A5F',
-              shadowColor: '#000',
-              shadowOffset: { width: 1, height: 0.1 },
-              shadowOpacity: 0,
-              shadowRadius: 10,
-              elevation: 5,
-            },
-            headerTitleStyle: {
-              flex: 1,
-              marginTop: 5,
-              textAlign: 'center',
-              color: '#fff',
-              fontWeight: 'bold',
-              textShadowColor: '#000',
-              fontSize: 36,
-              textShadowOffset: { width: 1, height: 1 },  // Set shadow position
-              textShadowRadius: 2,
-            },
             headerTintColor: '#fff',
           }}
-
-
+        />
+        <Stack.Screen
+          name="Edit"
+          component={EditScreen}
+          options={{
+            title: 'EDIT',
+            headerTitleAlign: 'center',
+            headerTintColor: '#fff',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
-
   );
 }
 
