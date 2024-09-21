@@ -8,19 +8,18 @@ import styles from '../css/home-screen-css';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen({ route, navigation }) {
-    const { firstName, lastName, phoneNumber, email, facebookURL } = route.params || {
+    const { firstName, lastName, phoneNumber, email, facebookURL, LineURL, } = route.params || {
         firstName: '',
         lastName: '',
         phoneNumber: '',
         email: '',
         facebookURL: '',
+        LineURL: '',
     };
 
-    let title = ""; //Title on contact
-    let org = ""; //Organization name
+    let title = "Student"; //Title on contact
+    let org = "PSU"; //Organization name
     let name = lastName + ";" + firstName + ";" //Full name => "Lastname;Firstname;"
-    let tel = ""; //Telephone number
-    let facebookurl = ""; //Facebook URL
     let lineurl = ""; //Line URL
     let anyurl = ""; //Any URL
 
@@ -29,9 +28,9 @@ export default function HomeScreen({ route, navigation }) {
     data += "TITLE:" + title + "\n";
     data += "ORG:" + org + "\n";
     data += "N:" + name + "\n"
-    data += "TEL;TYPE=CELL:+66 " + tel + "\n";
+    data += "TEL;TYPE=CELL:+66 " + phoneNumber + "\n";
     data += "EMAIL:" + email + "\n";
-    data += "URL:" + facebookurl + "\n";
+    data += "URL:" + facebookURL + "\n";
     data += "URL:" + lineurl + "\n";
     data += "URL:" + anyurl + "\n";
     data += "END:VCARD";
@@ -39,14 +38,13 @@ export default function HomeScreen({ route, navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <LinearGradient
-                // Background Linear Gradient
                 colors={['#354A5F', '#4E5A77', '#6D698D']}
                 style={styles.background}
 
             />
             <Text style={styles.textStyle}>Scan here{'\n'} to view my infomation</Text>
             <LinearGradient
-                colors={['#354A5F', '#4E5A77', '#6D698D']} // Gradient for the QR code container
+                colors={['#354A5F', '#4E5A77', '#6D698D']}
                 style={styles.qrCodeContainer}
             >
                 <QRCode value={data} size={250} />
@@ -61,6 +59,7 @@ export default function HomeScreen({ route, navigation }) {
                         phoneNumber,
                         email,
                         facebookURL,
+                        LineURL,
                     })}
                 >
                     <Text style={styles.buttonText}>Edit infomation</Text>

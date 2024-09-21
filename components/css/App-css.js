@@ -17,7 +17,7 @@ export default appStyles = StyleSheet.create({
         fontWeight: 'bold',
         textShadowColor: '#000',
         fontSize: 36,
-        textShadowOffset: { width: 1, height: 1 }, // Set shadow position
+        textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 2,
     },
 });

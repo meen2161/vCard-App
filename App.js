@@ -15,8 +15,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerTitleStyle: appStyles.headerTitleStyle,  // Applying styles from App-css.js
-          headerStyle: appStyles.headerStyle,            // Applying styles from App-css.js
+          headerTitleStyle: appStyles.headerTitleStyle,
+          headerStyle: appStyles.headerStyle,            
         }}
       >
         <Stack.Screen
