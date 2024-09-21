@@ -36,14 +36,17 @@ export default function HomeScreen() {
         <SafeAreaView style={styles.container}>
             <LinearGradient
                 // Background Linear Gradient
-                colors={['#354A5F', '#4E5A77','#6D698D']}
+                colors={['#354A5F', '#4E5A77', '#6D698D']}
                 style={styles.background}
 
             />
             <Text style={styles.textStyle}>Scan here{'\n'} to view my infomation</Text>
-            <View>
+            <LinearGradient
+                colors={['#354A5F', '#4E5A77', '#6D698D']} // Gradient for the QR code container
+                style={styles.qrCodeContainer}
+            >
                 <QRCode value={data} size={250} />
-            </View>
+            </LinearGradient>
 
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
@@ -53,7 +56,7 @@ export default function HomeScreen() {
                     <Text style={styles.buttonText}>Edit infomation</Text>
                 </TouchableOpacity>
             </View>
-            
+
         </SafeAreaView>
 
     );
