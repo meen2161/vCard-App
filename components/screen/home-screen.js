@@ -8,19 +8,18 @@ import styles from '../css/home-screen-css';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen({ route, navigation }) {
-    const { firstName, lastName, phoneNumber, email, facebookURL, LineURL, } = route.params || {
+    const { firstName, lastName, phoneNumber, email, facebookURL, lineURL, } = route.params || {
         firstName: '',
         lastName: '',
         phoneNumber: '',
         email: '',
         facebookURL: '',
-        LineURL: '',
+        lineURL: '',
     };
 
-    let title = "Student"; //Title on contact
-    let org = "PSU"; //Organization name
+    let title = ""; //Title on contact
+    let org = ""; //Organization name
     let name = lastName + ";" + firstName + ";" //Full name => "Lastname;Firstname;"
-    let lineurl = ""; //Line URL
     let anyurl = ""; //Any URL
 
     let data = "BEGIN:VCARD\n";
@@ -31,7 +30,7 @@ export default function HomeScreen({ route, navigation }) {
     data += "TEL;TYPE=CELL:+66 " + phoneNumber + "\n";
     data += "EMAIL:" + email + "\n";
     data += "URL:" + facebookURL + "\n";
-    data += "URL:" + lineurl + "\n";
+    data += "URL:" + lineURL + "\n";
     data += "URL:" + anyurl + "\n";
     data += "END:VCARD";
 
@@ -59,7 +58,7 @@ export default function HomeScreen({ route, navigation }) {
                         phoneNumber,
                         email,
                         facebookURL,
-                        LineURL,
+                        lineURL,
                     })}
                 >
                     <Text style={styles.buttonText}>Edit infomation</Text>

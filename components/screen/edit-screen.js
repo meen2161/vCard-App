@@ -13,7 +13,7 @@ export default function EditScreen({ route, navigation }) {
     const [phoneNumber, setPhoneNumber] = React.useState(initialPhoneNumber || '');
     const [email, setEmail] = React.useState(initialEmail || '');
     const [facebookURL, setFacebookURL] = React.useState(initialFacebookURL || '');
-    const [LineURL, setLineURL] = React.useState(initialLineURL || '');
+    const [lineURL, setLineURL] = React.useState(initialLineURL || '');
 
     return (
         <SafeAreaView style={styles.container}>
@@ -59,7 +59,7 @@ export default function EditScreen({ route, navigation }) {
             <TextInput
                 style={styles.input}
                 onChangeText={setLineURL}
-                value={LineURL}
+                value={lineURL}
                 placeholder="Line URL"
                 keyboardType="url"
             />
@@ -72,7 +72,7 @@ export default function EditScreen({ route, navigation }) {
                         phoneNumber,
                         email,
                         facebookURL,
-                        LineURL,
+                        lineURL,
                     })}
                 >
                     <Text style={styles.buttonText}>Update infomation</Text>
