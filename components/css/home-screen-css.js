@@ -7,19 +7,30 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     background: {
-        ...StyleSheet.absoluteFillObject,  // ให้พื้นหลังแสดงเต็มจอ
+        ...StyleSheet.absoluteFillObject,  
     },
     textStyle: {
         fontSize: 24,
         color: '#fff',
         textAlign: 'center',
         marginBottom: 26,
+        textShadowColor: '#000',  
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 3,
+        lineHeight: 30,          
+        fontWeight: 'bold',       
+    },
+    textStyle2: {
+        fontSize: 24,
+        color: '#fff',
+        textAlign: 'center',
+        marginBottom: 26,
     },
     profileContainer: {
-        flexDirection: 'row', // จัดรูปภาพและชื่อให้อยู่ในแถวเดียวกัน
-        alignItems: 'center', // จัดให้อยู่ตรงกลางในแนวตั้ง
-        justifyContent: 'center', // จัดให้อยู่ตรงกลางในแนวนอน
-        marginBottom: 20, // เพิ่มระยะห่างจากส่วนอื่น
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        marginBottom: 20, 
     },
     profileImage: {
         width: 100,
@@ -67,4 +78,3 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-

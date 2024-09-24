@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, Text, Button, View, Alert, SafeAreaView, TouchableOpacity, TextInput, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity, TextInput, ScrollView, Image, View } from 'react-native';
 import styles from '../css/edit-screen-css';
 import * as ImagePicker from 'expo-image-picker';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function EditScreen({ route, navigation }) {
     const { firstName: initialFirstName, lastName: initialLastName, phoneNumber: initialPhoneNumber, email: initialEmail, facebookURL: initialFacebookURL, lineURL: initialLineURL, image: initialImage } = route.params || {};
@@ -31,17 +32,24 @@ export default function EditScreen({ route, navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
-                {image && (
-                    <Image
-                        source={{ uri: `data:image/jpeg;base64,${image}` }}
-                        style={styles.profileImage}  
-                    />
-                )}
-                <TouchableOpacity style={styles.button} onPress={pickImage}>
-                    <Text style={styles.buttonText}>Upload Profile Picture</Text>
-                </TouchableOpacity>
-                
-                {/* Other Input Fields */}
+                <View style={styles.imageContainer}>
+                    <TouchableOpacity onPress={pickImage}>
+                        {image ? (
+                            <Image
+                                source={{ uri: `data:image/jpeg;base64,${image}` }}
+                                style={styles.profileImage}
+                            />
+                        ) : (
+                            <View style={styles.circularButton}>
+                                <Icon name="user" size={50} color="white" />
+                            </View>
+                        )}
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.plusButton} onPress={pickImage}>
+                        <Icon name="plus" size={20} color="white" />
+                    </TouchableOpacity>
+                </View>
+
                 <Text style={styles.label}>First name</Text>
                 <TextInput
                     style={styles.input}

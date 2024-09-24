@@ -46,6 +46,7 @@ export default function HomeScreen({ route, navigation }) {
                         />
                     )}
                     <Text style={styles.textStyle}>{`${firstName} ${lastName}`}</Text>
+                    
                 </View>
 
                 <Text style={styles.textStyle}>Scan here{'\n'} to view my information</Text>

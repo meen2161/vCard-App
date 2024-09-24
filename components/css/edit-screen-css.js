@@ -3,26 +3,25 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 16,
-        //backgroundColor: '#6D698D',
-        //alignItems: 'center',
-        //justifyContent: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
     },
     input: {
-        height: 50,
-        flex: 1,
+        borderRadius: 20,
         borderWidth: 1,
-        padding: 10,
-        borderRadius: 10,
-        fontSize: 20,
-        width: '100%', 
+        borderColor: '#c0c0c0',
+        paddingVertical: 8, 
+        paddingHorizontal: 20, 
+        marginVertical: 8, 
+        marginHorizontal: 20, 
+        width: '90%', 
     },
-    label:{
-        fontSize: 20,
+    label: {
+        fontSize: 18, 
         fontWeight: 'bold',
         color: "#4E5A77",
-        marginHorizontal: 20,
         marginTop: 12,
+        marginHorizontal: 20,
         alignSelf: 'flex-start',
     },
     button: {
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
         marginTop:20,
 
         borderRadius: 5,
-        borderRadius: 10,
+        borderRadius: 50,
         backgroundColor: '#4E5A77',
         shadowColor: "#000",
         shadowOffset: {
@@ -45,18 +44,45 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-    },
-    profileImage: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,  
-        marginBottom: 20,
-        alignSelf: 'center',
+
     },
     buttonText: {
         fontSize: 18,
         color: '#fff',
         textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    imageContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 20, 
+    },
+    circularButton: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: '#c0c0c0',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10, // Added spacing
+    },
+    profileImage: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        marginBottom: 20,
+        alignSelf: 'center',
+    },
+    plusButton: {
+        position: 'absolute',
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: '#c0c0c0',
+        justifyContent: 'center',
+        alignItems: 'center',
+        right: 10, 
+        bottom: 10, 
     },
 });
 
