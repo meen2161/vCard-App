@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Text, SafeAreaView, TouchableOpacity, TextInput, ScrollView, Image, View } from 'react-native';
 import styles from '../css/edit-screen-css';
 import * as ImagePicker from 'expo-image-picker';
+import * as ImageManipulator from 'expo-image-manipulator';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function EditScreen({ route, navigation }) {
@@ -19,13 +20,29 @@ export default function EditScreen({ route, navigation }) {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [1, 1],
             quality: 1,
-            base64: true,
         });
 
         if (!result.canceled) {
-            setImage(result.assets[0].base64);
+            const manipResult = await ImageManipulator.manipulateAsync(
+                result.assets[0].uri,
+                [{ resize: { width: 50, height:50 } }],
+                { compress: 0.5, format: ImageManipulator.SaveFormat.JPEG }
+            );
+
+            const base64 = await fetch(manipResult.uri)
+                .then(response => response.blob())
+                .then(blob => {
+                    const reader = new FileReader();
+                    return new Promise((resolve) => {
+                        reader.onloadend = () => {
+                            resolve(reader.result);
+                        };
+                        reader.readAsDataURL(blob);
+                    });
+                });
+
+            setImage(base64.split(',')[1]);
         }
     };
 
@@ -49,7 +66,6 @@ export default function EditScreen({ route, navigation }) {
                         <Icon name="plus" size={20} color="white" />
                     </TouchableOpacity>
                 </View>
-
                 <Text style={styles.label}>First name</Text>
                 <TextInput
                     style={styles.input}

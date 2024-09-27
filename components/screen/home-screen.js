@@ -31,6 +31,7 @@ export default function HomeScreen({ route, navigation }) {
     data += "URL:" + facebookURL + "\n";
     data += "URL:" + lineURL + "\n";
     data += "URL:" + anyurl + "\n";
+    data += "PHOTO;ENCODING=BASE64;TYPE=JPEG:" + image + "\n";
     data += "END:VCARD";
 
     return (
@@ -46,7 +47,6 @@ export default function HomeScreen({ route, navigation }) {
                         />
                     )}
                     <Text style={styles.textStyle}>{`${firstName} ${lastName}`}</Text>
-                    
                 </View>
 
                 <Text style={styles.textStyle}>Scan here{'\n'} to view my information</Text>
@@ -55,7 +55,7 @@ export default function HomeScreen({ route, navigation }) {
                     colors={['#354A5F', '#4E5A77', '#6D698D']}
                     style={styles.qrCodeContainer}
                 >
-                    <QRCode value={data} size={250} />
+                    <QRCode value={data} size={300} />
                 </LinearGradient>
 
                 <View style={styles.buttonContainer}>
@@ -76,6 +76,5 @@ export default function HomeScreen({ route, navigation }) {
                 </View>
             </ScrollView>
         </SafeAreaView>
-
     );
 }
