@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 
 export default appStyles = StyleSheet.create({
     headerStyle: {
-        backgroundColor: '#354A5F',
+        backgroundColor: '#000000',
         shadowColor: '#000',
         shadowOffset: { width: 1, height: 0.1 },
         shadowOpacity: 0,
         shadowRadius: 10,
         elevation: 5,
+        
     },
     headerTitleStyle: {
         flex: 1,

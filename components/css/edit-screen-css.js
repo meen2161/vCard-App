@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 18, 
         fontWeight: 'bold',
-        color: "#4E5A77",
+        color: "#000000",
         marginTop: 12,
         marginHorizontal: 20,
         alignSelf: 'flex-start',
     },
     button: {
-        width: 300,
+        width: '90%',
         alignSelf:'center',
         paddingVertical: 12,
         paddingHorizontal: 24,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
         borderRadius: 5,
         borderRadius: 50,
-        backgroundColor: '#4E5A77',
+        backgroundColor: '#000000',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 50,
-        backgroundColor: '#c0c0c0',
+        backgroundColor: '#c8c8c8',
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 10, // Added spacing
