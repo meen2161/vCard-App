@@ -1,8 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Alert, Text, View, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native';
 import * as React from 'react';
 import QRCode from 'react-native-qrcode-svg';
 import styles from '../css/home-screen-css';
+import * as FileSystem from 'expo-file-system';
+import * as MediaLibrary from 'expo-media-library';
 
 export default function HomeScreen({ route, navigation }) {
     const { firstName, lastName, phoneNumber, email, facebookURL, lineURL, image } = route.params || {
@@ -31,11 +32,33 @@ export default function HomeScreen({ route, navigation }) {
     data += "URL:" + anyurl + "\n";
     data += "END:VCARD";
 
+    const qrCodeRef = React.useRef(null);
+
+    const saveQrToDisk = async () => {
+        if (qrCodeRef.current) {
+            qrCodeRef.current.toDataURL(async (data) => {
+                const fileUri = `${FileSystem.cacheDirectory}qr-code.png`;
+
+                await FileSystem.writeAsStringAsync(fileUri, data, {
+                    encoding: FileSystem.EncodingType.Base64,
+                });
+
+                const { status } = await MediaLibrary.requestPermissionsAsync();
+                if (status === 'granted') {
+                    await MediaLibrary.createAssetAsync(fileUri);
+                    Alert.alert('Success', 'Saved to gallery!');
+                } else {
+                    Alert.alert('Error', 'Permission denied');
+                }
+            });
+        }
+    };
+
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: '#262525' }]}>
             <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
                 <View style={styles.cardContainer}>
-                    
+
                     {image && (
                         <Image
                             source={{ uri: `data:image/jpeg;base64,${image}` }}
@@ -45,15 +68,20 @@ export default function HomeScreen({ route, navigation }) {
                     <Text style={styles.textStyle1}>{`${firstName} ${lastName}`} {'\n'}{'\n'} Scan here{'\n'} to view my information</Text>
 
                     <View style={styles.qrCodeContainer}>
-                    <QRCode
-                            value={data}
-                            size={300}
-                            color="black" 
-                            backgroundColor="#c8c8c8" 
-                        />
+                        {phoneNumber ? (
+                            <QRCode
+                                value={data}
+                                size={300}
+                                color="black"
+                                getRef={qrCodeRef}
+                                backgroundColor="#c8c8c8"
+                            />
+                        ) : (
+                            <Text style={styles.errorText}>Please enter phone number</Text>
+                        )}
                     </View>
 
-                    <View style={styles.buttonContainer}>
+                    <View>
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => navigation.navigate('Edit', {
@@ -72,12 +100,12 @@ export default function HomeScreen({ route, navigation }) {
                 </View>
 
                 <View style={styles.footer}>
-                    <TouchableOpacity style={styles.footerButton}>
+                    <TouchableOpacity style={styles.footerButton} onPress={saveQrToDisk}>
                         <Text style={styles.footerButtonText}>SAVE QR</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.footerButton}>
+                    {/* <TouchableOpacity style={styles.footerButton}>
                         <Text style={styles.footerButtonText}>SHARE QR</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
             </ScrollView>
         </SafeAreaView>

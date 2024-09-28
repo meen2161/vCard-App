@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity, TextInput, ScrollView, Image, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { Text, SafeAreaView, TouchableOpacity, TextInput, ScrollView, Image, View, KeyboardAvoidingView, Platform } from 'react-native';
 import styles from '../css/edit-screen-css';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -99,7 +99,7 @@ export default function EditScreen({ route, navigation }) {
                         placeholder="Line URL"
                         keyboardType="url"
                     />
-                    <View style={styles.buttonContainer}>
+                    <View>
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => navigation.navigate('Home', {

@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    
+
     cardContainer: {
         backgroundColor: '#c8c8c8',
         borderRadius: 10,
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         position: 'relative',
-        marginTop: 140,
+        marginTop: 100,
+        textAlign: 'center',
     },
     profileContainer: {
         alignItems: 'center',
@@ -30,13 +31,13 @@ const styles = StyleSheet.create({
     profileImage: {
         width: 120,
         height: 120,
-        borderRadius: 60, 
+        borderRadius: 60,
         position: 'absolute',
         top: -60,
         zIndex: 1,
-        borderWidth: 4, 
-        borderColor: '#c8c8c8', 
-        backgroundColor: '#c8c8c8', 
+        borderWidth: 4,
+        borderColor: '#c8c8c8',
+        backgroundColor: '#c8c8c8',
     },
     textStyle: {
         fontSize: 18,
@@ -53,22 +54,21 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         fontWeight: 'bold',
     },
-    
+
     qrCodeContainer: {
         padding: 20,
         borderRadius: 10,
-        marginBottom: 20,
+        marginBottom: 10,
         backgroundColor: '#c8c8c8',
-    },
-    buttonContainer: {
-        marginTop: 20,
     },
     button: {
         backgroundColor: '#000000',
         paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 82,
         borderRadius: 5,
-        marginTop: -30,
+        marginTop: 10,
+        textAlign: 'center',
+        alignSelf: 'center',
     },
     buttonText: {
         color: 'white',
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#000',
         width: '100%',
-        paddingBottom: 0, 
-        marginTop: 0, 
+        paddingBottom: 0,
+        marginTop: 0,
     },
     footerButton: {
         flex: 1,
@@ -90,6 +90,14 @@ const styles = StyleSheet.create({
     footerButtonText: {
         color: 'white',
         fontWeight: 'bold',
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 30,
+        textAlign: 'center',
+        fontWeight:'bold',
+        textDecorationLine:'underline',
+        marginVertical: 100,
     },
 });
 

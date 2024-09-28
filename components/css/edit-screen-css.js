@@ -28,10 +28,11 @@ const styles = StyleSheet.create({
         width: '90%',
         alignSelf:'center',
         paddingVertical: 12,
-        paddingHorizontal: 24,
-        padding: 30,
+        paddingHorizontal: 82,
+        //padding: 30,
 
         marginTop:20,
+        marginBottom:20,
 
         borderRadius: 5,
         borderRadius: 50,
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
     imageContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 20, 
+        marginBottom: 0,
+        marginTop:10, 
     },
     circularButton: {
         width: 100,
