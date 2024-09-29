@@ -32,7 +32,7 @@ export default function App() {
           name="Edit"
           component={EditScreen}
           options={{
-            title: 'EDIT',
+            title: 'vCard',
             headerTitleAlign: 'center',
             headerTintColor: '#fff',
           }}
