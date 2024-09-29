@@ -6,24 +6,25 @@ import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 
 export default function HomeScreen({ route, navigation }) {
-    const { firstName, lastName, phoneNumber, email, facebookURL, lineURL, image } = route.params || {
+    const { firstName, lastName, phoneNumber, email, org, title, team, facebookURL, lineURL, image } = route.params || {
         firstName: '',
         lastName: '',
         phoneNumber: '',
         email: '',
+        org: '',
+        title: '',
+        team: '',
         facebookURL: '',
         lineURL: '',
         image: null,
     };
 
-    let title = "";
-    let org = "";
     let name = lastName + ";" + firstName + ";";
     let anyurl = "";
     let data = "BEGIN:VCARD\n";
     data += "VERSION:4.0\n";
+    data += "ORG:" + org + "Team;" + team + "\n";
     data += "TITLE:" + title + "\n";
-    data += "ORG:" + org + "\n";
     data += "N:" + name + "\n";
     data += "TEL;TYPE=CELL:+66 " + phoneNumber + "\n";
     data += "EMAIL:" + email + "\n";
@@ -65,7 +66,7 @@ export default function HomeScreen({ route, navigation }) {
                             style={styles.profileImage}
                         />
                     )}
-                    <Text style={styles.textStyle1}>{`${firstName} ${lastName}`} {'\n'}{'\n'} Scan here{'\n'} to view my information</Text>
+                    <Text style={styles.textStyle1}>{`${firstName} ${lastName}`} {'\n'}{'\n'} SCAN HERE{'\n'}TO VIEW MY CONTACT</Text>
 
                     <View style={styles.qrCodeContainer}>
                         {phoneNumber ? (
@@ -77,7 +78,7 @@ export default function HomeScreen({ route, navigation }) {
                                 backgroundColor="#c8c8c8"
                             />
                         ) : (
-                            <Text style={styles.errorText}>Please enter phone number</Text>
+                            <Text style={styles.errorText}>PLEASE ENTER PHONE NUMBER</Text>
                         )}
                     </View>
 
@@ -89,6 +90,9 @@ export default function HomeScreen({ route, navigation }) {
                                 lastName,
                                 phoneNumber,
                                 email,
+                                org,
+                                title,
+                                team,
                                 facebookURL,
                                 lineURL,
                                 image,

@@ -23,7 +23,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: 'V-Card',
+            title: 'vCard',
             headerTitleAlign: 'center',
             headerTintColor: '#fff',
           }}
@@ -32,7 +32,7 @@ export default function App() {
           name="Edit"
           component={EditScreen}
           options={{
-            title: 'Edit',
+            title: 'vCard',
             headerTitleAlign: 'center',
             headerTintColor: '#fff',
           }}

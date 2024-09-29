@@ -5,13 +5,18 @@ import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function EditScreen({ route, navigation }) {
-    const { firstName: initialFirstName, lastName: initialLastName, phoneNumber: initialPhoneNumber, email: initialEmail, facebookURL: initialFacebookURL, lineURL: initialLineURL, image: initialImage } = route.params || {};
+    const { firstName: initialFirstName, lastName: initialLastName, phoneNumber: initialPhoneNumber, email: initialEmail,
+        facebookURL: initialFacebookURL, lineURL: initialLineURL, image: initialImage, org: initialORG, title: initialTitle,
+        team: initialTeam } = route.params || {};
     const [firstName, setFirstName] = React.useState(initialFirstName || '');
     const [lastName, setLastName] = React.useState(initialLastName || '');
     const [phoneNumber, setPhoneNumber] = React.useState(initialPhoneNumber || '');
     const [email, setEmail] = React.useState(initialEmail || '');
     const [facebookURL, setFacebookURL] = React.useState(initialFacebookURL || '');
     const [lineURL, setLineURL] = React.useState(initialLineURL || '');
+    const [org, setOrg] = React.useState(initialORG || null);
+    const [title, setTitle] = React.useState(initialTitle || null);
+    const [team, setTeam] = React.useState(initialTeam || null);
     const [image, setImage] = React.useState(initialImage || null);
 
     const pickImage = async () => {
@@ -36,6 +41,7 @@ export default function EditScreen({ route, navigation }) {
                 keyboardVerticalOffset={100}
             >
                 <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={styles.header}>INFORMATION</Text>
                     <View style={styles.imageContainer}>
                         <TouchableOpacity onPress={pickImage}>
                             {image ? (
@@ -67,7 +73,7 @@ export default function EditScreen({ route, navigation }) {
                         placeholder="Lastname"
                         value={lastName}
                     />
-                    <Text style={styles.label}>Phone number</Text>
+                    <Text style={styles.label}>Phone number <Text style={styles.star}>*</Text></Text>
                     <TextInput
                         style={styles.input}
                         onChangeText={setPhoneNumber}
@@ -82,6 +88,27 @@ export default function EditScreen({ route, navigation }) {
                         value={email}
                         placeholder="Email"
                         keyboardType="email-address"
+                    />
+                    <Text style={styles.label}>ORG</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setOrg}
+                        value={org}
+                        placeholder="Name of the organization"
+                    />
+                    <Text style={styles.label}>TITLE</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setTitle}
+                        value={title}
+                        placeholder="Specifies the job title"
+                    />
+                    <Text style={styles.label}>TEAM</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setTeam}
+                        value={team}
+                        placeholder="Unit(s) of the organization"
                     />
                     <Text style={styles.label}>Facebook URL</Text>
                     <TextInput
@@ -107,6 +134,9 @@ export default function EditScreen({ route, navigation }) {
                                 lastName,
                                 phoneNumber,
                                 email,
+                                org,
+                                title,
+                                team,
                                 facebookURL,
                                 lineURL,
                                 image,
@@ -117,6 +147,6 @@ export default function EditScreen({ route, navigation }) {
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-        </SafeAreaView>
+        </SafeAreaView >
     );
 }
