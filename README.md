@@ -4,6 +4,10 @@
 vCard App Project make with REACT NATIVE (EXPO)
 using JavaScript
 
+## Required Environment
+
+[Node.js](https://nodejs.org)
+
 ## Run Locally
 
 Clone the project
@@ -27,7 +31,7 @@ Install dependencies
 Install expo package
 
 ```bash
- npm add expo
+  npm add expo
 ```
 
 Start the server
