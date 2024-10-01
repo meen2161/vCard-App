@@ -1,9 +1,10 @@
-import { Alert, Text, View, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Alert, Text, View, SafeAreaView, TouchableOpacity, Image, ScrollView, Share } from 'react-native';
 import * as React from 'react';
 import QRCode from 'react-native-qrcode-svg';
 import styles from '../css/home-screen-css';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
+import * as Sharing from 'expo-sharing';
 
 export default function HomeScreen({ route, navigation }) {
     const { firstName, lastName, phoneNumber, email, org, title, team, facebookURL, lineURL, image } = route.params || {
@@ -50,6 +51,28 @@ export default function HomeScreen({ route, navigation }) {
                     Alert.alert('Success', 'Saved to gallery!');
                 } else {
                     Alert.alert('Error', 'Permission denied');
+                }
+            });
+        }
+    };
+
+    const shareQrCode = async () => {
+        if (qrCodeRef.current) {
+            qrCodeRef.current.toDataURL(async (data) => {
+                const fileUri = `${FileSystem.cacheDirectory}qr-code.png`;
+                try {
+                    await FileSystem.writeAsStringAsync(fileUri, data, {
+                        encoding: FileSystem.EncodingType.Base64,
+                    });
+
+                    if (await Sharing.isAvailableAsync()) {
+                        await Sharing.shareAsync(fileUri);
+                    } else {
+                        Alert.alert('Error', 'Sharing is not available on this device');
+                    }
+                } catch (error) {
+                    Alert.alert('Error', 'Unable to share the QR code');
+                    console.error(error);
                 }
             });
         }
@@ -107,9 +130,9 @@ export default function HomeScreen({ route, navigation }) {
                     <TouchableOpacity style={styles.footerButton} onPress={saveQrToDisk}>
                         <Text style={styles.footerButtonText}>SAVE QR</Text>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity style={styles.footerButton}>
+                    <TouchableOpacity style={styles.footerButton} onPress={shareQrCode}>
                         <Text style={styles.footerButtonText}>SHARE QR</Text>
-                    </TouchableOpacity> */}
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </SafeAreaView>
