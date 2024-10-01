@@ -4,6 +4,7 @@ import QRCode from 'react-native-qrcode-svg';
 import styles from '../css/home-screen-css';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
+import * as Sharing from 'expo-sharing';
 
 export default function HomeScreen({ route, navigation }) {
     const { firstName, lastName, phoneNumber, email, org, title, team, facebookURL, lineURL, image } = route.params || {
@@ -59,18 +60,19 @@ export default function HomeScreen({ route, navigation }) {
         if (qrCodeRef.current) {
             qrCodeRef.current.toDataURL(async (data) => {
                 const fileUri = `${FileSystem.cacheDirectory}qr-code.png`;
-
-                await FileSystem.writeAsStringAsync(fileUri, data, {
-                    encoding: FileSystem.EncodingType.Base64,
-                });
-
                 try {
-                    await Share.share({
-                        url: fileUri,
-                        message: 'Here is my contact QR code!',
+                    await FileSystem.writeAsStringAsync(fileUri, data, {
+                        encoding: FileSystem.EncodingType.Base64,
                     });
+
+                    if (await Sharing.isAvailableAsync()) {
+                        await Sharing.shareAsync(fileUri);
+                    } else {
+                        Alert.alert('Error', 'Sharing is not available on this device');
+                    }
                 } catch (error) {
                     Alert.alert('Error', 'Unable to share the QR code');
+                    console.error(error);
                 }
             });
         }
