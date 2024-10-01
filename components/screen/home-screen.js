@@ -1,4 +1,4 @@
-import { Alert, Text, View, SafeAreaView, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Alert, Text, View, SafeAreaView, TouchableOpacity, Image, ScrollView, Share } from 'react-native';
 import * as React from 'react';
 import QRCode from 'react-native-qrcode-svg';
 import styles from '../css/home-screen-css';
@@ -50,6 +50,27 @@ export default function HomeScreen({ route, navigation }) {
                     Alert.alert('Success', 'Saved to gallery!');
                 } else {
                     Alert.alert('Error', 'Permission denied');
+                }
+            });
+        }
+    };
+
+    const shareQrCode = async () => {
+        if (qrCodeRef.current) {
+            qrCodeRef.current.toDataURL(async (data) => {
+                const fileUri = `${FileSystem.cacheDirectory}qr-code.png`;
+
+                await FileSystem.writeAsStringAsync(fileUri, data, {
+                    encoding: FileSystem.EncodingType.Base64,
+                });
+
+                try {
+                    await Share.share({
+                        url: fileUri,
+                        message: 'Here is my contact QR code!',
+                    });
+                } catch (error) {
+                    Alert.alert('Error', 'Unable to share the QR code');
                 }
             });
         }
@@ -107,9 +128,9 @@ export default function HomeScreen({ route, navigation }) {
                     <TouchableOpacity style={styles.footerButton} onPress={saveQrToDisk}>
                         <Text style={styles.footerButtonText}>SAVE QR</Text>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity style={styles.footerButton}>
+                    <TouchableOpacity style={styles.footerButton} onPress={shareQrCode}>
                         <Text style={styles.footerButtonText}>SHARE QR</Text>
-                    </TouchableOpacity> */}
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </SafeAreaView>
